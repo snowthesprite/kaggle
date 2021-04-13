@@ -67,31 +67,18 @@ for port in df['Embarked'].unique() :
 del df['Cabin']
 del df['Embarked']
 
-
-used_features = [
-    'Sex',
-    'Pclass',
-    'Fare',
-    'Age',
-    'SibSp', 'SibSp>0',
-    'Parch>0',
-    'Embarked=C', 'Embarked=None', 'Embarked=Q', 'Embarked=S', 
-    'CabinType=A', 'CabinType=B', 'CabinType=C', 'CabinType=D', 'CabinType=E', 'CabinType=F', 'CabinType=G', 'CabinType=None', 'CabinType=T']
-
-#print()
-
-#print(list(df.columns))
-
-cols_needed = list(df.columns)
-#df = df[cols_needed]
-
-#print("\n\n")
-
-#print(list(df.columns))
-
-#'''
+terms = list(df.columns)[1:]
+#make interaction terms
+for col_1 in terms :
+    for col_2 in terms :
+        interaction = col_1+'*'+col_2
+        no_inter = col_1[:-1] not in col_2 and col_2[:-1] not in col_1
+        not_in = interaction not in list(df.columns) and col_2+'*'+col_1 not in list(df.columns)
+        if no_inter and not_in :
+            df[interaction] = df[col_1] * df[col_2]
 
 
+features_used = list(df.columns)[1:]
 
 df_train = df[:500]
 df_test = df[500:]
@@ -105,14 +92,12 @@ y_test = arr_test[:,0]
 x_train = arr_train[:,1:]
 x_test = arr_test[:,1:]
 
-regressor = LogisticRegression(max_iter=1000)
+regressor = LogisticRegression(max_iter=10000)
 regressor.fit(x_train, y_train)
 
 coeff_dict = {'Constant' : round(regressor.intercept_[0],4)}
 feature_cols = df_train.columns[1:]
 feature_coeffs = regressor.coef_[0]
-
-#print('\n', feature_coeffs, '\n')
 
 for i in range(len(feature_cols)) :
     col = feature_cols[i]
@@ -142,10 +127,10 @@ def find_accuracy (predict, actual) :
     return num_correct/(num_correct + num_incorrect)
 
 
+print('\n')
+#print("\n",'features:', features_used)
+print('train:', round(find_accuracy(y_train_predictions, y_train),3))
+print('test:', round(find_accuracy(y_test_predictions, y_test),3), "\n")
 
-print("\n",'features:', used_features)
-print('train:', find_accuracy(y_train_predictions, y_train))
-print('test:', round(find_accuracy(y_test_predictions, y_test),4), "\n")
-
-print(coeff_dict)
+#print(coeff_dict)
 #'''
