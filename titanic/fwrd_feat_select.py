@@ -146,7 +146,7 @@ while True :
     perma_test_acc = temp_test_acc 
 
 print('\n\n\n')
-print(perma_terms.keys())
+print(perma_terms)
 print('Training:', perma_train_acc)
 print('Testing:', perma_test_acc)
 #'''
