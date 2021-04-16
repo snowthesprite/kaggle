@@ -79,6 +79,7 @@ for col_1 in terms :
 
 
 features_used = list(df.columns)[1:]
+#print(features_used)
 
 df_train = df[:500]
 df_test = df[500:]
