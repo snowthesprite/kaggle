@@ -27,7 +27,7 @@ math_prep = df.copy()[['math score', "test preparation course"]]
 
 math_prep["test preparation course"] = math_prep["test preparation course"].apply(completed_to_true)
 
-print(math_prep)
+#print(math_prep)
 
 prep_true = []
 prep_false = []
