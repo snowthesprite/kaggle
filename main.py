@@ -1,3 +1,3 @@
-#import sys
-#sys.path.append('titanic')
-#from analysis import *
+import sys
+sys.path.append('quiz_5')
+import quiz_5
