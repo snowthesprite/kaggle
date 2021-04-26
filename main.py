@@ -1,3 +1,3 @@
 import sys
-sys.path.append('quiz_5')
-import quiz_5
+sys.path.append('titanic')
+import back_feat_select
