@@ -5,7 +5,7 @@ from warnings import simplefilter
 from sklearn.exceptions import ConvergenceWarning
 simplefilter("ignore", category=ConvergenceWarning)
 
-deBug = True
+deBug = False
 
 df = pd.read_csv('/home/runner/kaggle/titanic/dataset.csv')
 

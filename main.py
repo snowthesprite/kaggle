@@ -1,3 +1,7 @@
 import sys
 sys.path.append('titanic')
-import back_feat_select
+import KNN_modeling
+#import KNN_2
+
+#sys.path.append('quiz_6')
+#import quiz_6
