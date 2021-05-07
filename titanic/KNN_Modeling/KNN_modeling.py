@@ -38,7 +38,7 @@ for predictions in predict.values() :
     acc.append(find_accuracy(predictions,survived))
 #'''
 
-#'''
+'''
 import matplotlib.pyplot as plt
 plt.style.use('bmh')
 
